@@ -1,0 +1,27 @@
+
+start:
+main proc
+mov dx, 14h
+push dx
+call func_1
+pop dx
+call func_2
+mov ah, 4ch
+int 21h
+main endp
+
+func_1 proc 
+pop dx
+mov dx, 920h
+push dx
+call func_2
+ret
+func_1 endp
+
+func_2 proc
+mov dx, 1
+ret
+func_2 endp
+end start
+
+

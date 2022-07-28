@@ -1,0 +1,78 @@
+.model large
+.stack 100h
+.data
+newline db 10,13,'$'
+number dw ?
+count db 0
+regdx dw 0
+.code
+
+main proc
+
+mov ax,@data
+mov ds,ax
+
+mov ah,0
+mov al,12h
+int 10h
+
+mov ax,01
+int 33h
+
+
+mov ax,03
+int 33h
+mov regdx,dx
+mov number,cx
+call print_number
+mov dx,regdx
+mov number,dx
+call print_number
+
+Exxit:
+
+mov ax,4c00h
+int 21h
+main endp
+
+print_number proc 
+mov dx,0
+mov cx,0
+
+mov count,0
+
+
+labeldiv:
+
+mov ax,number
+mov bl,10
+div bl
+inc count
+mov dl,ah
+mov dh,0
+push dx
+mov ah,0
+mov number,ax
+
+cmp number,cx
+jne  labeldiv
+
+display:
+
+pop dx
+add dl,48
+mov ah,02h
+int 21h
+dec count
+
+cmp count,cl
+jne display 
+
+mov dx,offset newline
+mov ah,09
+int 21h
+   
+ret
+print_number endp
+
+end

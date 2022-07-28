@@ -1,0 +1,22 @@
+Chars_print macro startingchar, numofchar
+mov CX, numofchar
+mov Bl, startingchar
+lp1:
+    mov DL, Bl
+    mov Ah,02
+    int 21h
+    mov DL, ' '
+    mov AH, 02
+    int 21h
+    add BL, 1
+    cmp bl, 'z'
+    ja outta
+    cmp bl, 'Z'
+    ja chck
+    temp:
+loop lp1    
+chck:
+    cmp bl, 'a'
+    ja temp
+outta:    
+endm

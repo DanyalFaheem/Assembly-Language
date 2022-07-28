@@ -1,0 +1,34 @@
+.model large
+.stack 100h
+.data
+newline db 10,13,'$'
+number dw ?
+count db 0
+regdx dw 0
+blreg db 9
+.code
+
+main proc
+
+mov ax,@data
+mov ds,ax
+
+mov ah,0
+mov al,12h
+int 10h
+
+mov ax,01
+int 33h
+mov cx,200
+mov dx,200
+
+mov ax,04
+int 33h
+
+Exxit:
+
+mov ax,4c00h
+int 21h
+main endp
+
+end

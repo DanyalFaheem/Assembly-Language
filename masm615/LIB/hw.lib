@@ -1,0 +1,12 @@
+Chars_print macro startingchar, numofchar
+mov CX, numofchar
+loop1:
+    mov DL, startingchar
+    mov Ah,02
+    int 21h
+    mov DL, ' '
+    mov AH, 02
+    int 21h
+    inc startingchar
+loop loop1    
+endm

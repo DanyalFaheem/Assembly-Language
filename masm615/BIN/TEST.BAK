@@ -1,0 +1,13 @@
+.model small
+.stack 100h
+.data
+var1 word ?
+var2 word ?
+.code
+start:
+mov var1, FFFE
+mov var2, F861
+Add var1, var2
+mov AH, 4CH
+int 21h
+end start
